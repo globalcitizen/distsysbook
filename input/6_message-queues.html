@@ -1,0 +1,36 @@
+# %chapter_number%. Message Queues: Generalizing distributed communications
+
+This is a chapter in progress.
+
+The idea is to explore the phenomenon of the Message Queue (MQ) systems recently popularized in open source systems.  While MQs are nothing new, the feature set and selection of open source MQ systems available today is unprecedented. 
+
+## What the hell is a Message Queue?
+
+Popular in corporate programming of the 1990s and early noughties was the notion of an Enterprise Service Bus or ESB. Much like modern open source MQs, the idea behind ESBs was message-oriented programming, or the structuring of inter-system interactions around well defined, minimalist, hopefully self-contained messages that discouraged significant state and increased retargetability at the network layer. What does this 'retargetability' concept mean? Simply that, should one node fail, the network could route the same message to its peer.
+
+Conceptually, this is fairly similar to the perhaps more familiar concept of an HTTP server farm with one or more front-end proxies. The front-end proxies (such as `nginx`), retarget inbound requests by passing them off to a roughly load-balanced, availability-aware, nominally identical set of real web servers to perform actual processing.  In such situations, the HTTP request could be likened to a request message, and the HTTP response could be likened to a response message.  However, TCP overheads, logging, shared state tied to cookies, various complexities related to SSL and other general issues with HTTP's *connection-orientation* and general baggage make this a fairly unclean example.
+
+                         Frontend HTTP Proxy
+   Browser <--request--> or Load Balancer    <--modified                      (Many nodes)
+                         (eg. nginx)            
+
+Message Queues, by contrast, encourage *message-orientation* whereby individual acts of communication generally remain largely independent of one another and may be re-routed, failed, queued or cached, encrypted, responded to or otherwise processed on an individual basis.  While there are exceptions (such as state-dependent message processing), this is perhaps a fair summary.
+
+
+## Topological wisdom of the ancients
+
+Skeptics of the ESB craze and MQs in general are often wont to point to datagram protocols such as UDP which have successfully provided messaging for decades.  They are correct that message-oriented network programming can be done via such protocols, however those protocols tend to be heavily linked to the communications topologies provided by their underlying transport (in reality, in most cases this boils down to IPv4-based unicast and IPv4-based local broadcast). MQs, however, provide us with many additional topologies.
+
+Let's take a look at the topology options offered by one popular MQ, ZeroMQ.
+
+    (unfinished, go draw diagrams here)
+
+---
+
+## Further reading
+
+#### Example category
+
+[Example link](http://aljazeera.com/)
+
+- [Other link](http://bbc.co.uk) - Author, YYYY
